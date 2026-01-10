@@ -55,6 +55,20 @@ gibi segmentler oluşturmak.
 ## **2. Kütüphanelerin Yüklenmesi ve Veri Seti**
 
 ## **3. Keşifsel Veri Analizi (EDA)**
+```# Genel Bakış
+print("--- Veri Seti Bilgisi ---")
+print(df.info())
+
+print("\n--- İlk 5 Satır ---")
+print(df.head())
+
+# İstatistiksel Özet
+print("\n--- İstatistiksel Özet ---")
+print(df.describe().T)
+
+# Eksik Değer Kontrolü
+print("\n--- Eksik Değer Sayısı ---")
+print(df.isnull().sum())```
 
 ### Veri Yapısı ve Kalitesi (Data Info)
 

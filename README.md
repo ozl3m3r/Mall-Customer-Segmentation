@@ -71,6 +71,7 @@ print("\n--- Eksik Değer Sayısı ---")
 print(df.isnull().sum())
 
 ```
+<img width="537" height="669" alt="ç1" src="https://github.com/user-attachments/assets/5e9fb329-04f1-473e-ba05-57a9fcb10fbe" />
 
 ### Veri Yapısı ve Kalitesi (Data Info)
 

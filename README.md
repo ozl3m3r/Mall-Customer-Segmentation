@@ -53,7 +53,22 @@ gibi segmentler oluşturmak.
 
 
 ## **2. Kütüphanelerin Yüklenmesi ve Veri Seti**
+```
+# Kütüphaneleri Yükleme 
+import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+import plotly.express as px 
+from sklearn.cluster import KMeans 
+from sklearn.preprocessing import StandardScaler
 
+import warnings
+warnings.filterwarnings('ignore')
+
+# Veriyi Yükleme
+df = pd.read_csv('/kaggle/input/customer-segmentation-tutorial-in-python/Mall_Customers.csv')
+```
 ## **3. Keşifsel Veri Analizi (EDA)**
 ```# Genel Bakış
 print("--- Veri Seti Bilgisi ---")
@@ -134,6 +149,7 @@ Harcama skoru dağılımı orta seviyelerde (40–60 aralığı) yoğunlaşmakla
 
 Bu dağılımlar, müşteri segmentasyonu için kullanılan değişkenlerin ayırt edici ve anlamlı olduğunu ortaya koymaktadır. Özellikle Yıllık Gelir ve Harcama Skoru değişkenleri, müşterilerin farklı gruplara ayrılabilmesi açısından güçlü bir temel oluşturmaktadır.
 
+<img width="1311" height="413" alt="ç2" src="https://github.com/user-attachments/assets/79cc8917-b3e9-4849-aa47-02fd6cfd2ecd" />
 
 ### **Özellikler Arası Korelasyon Analizi**
 

@@ -68,7 +68,9 @@ print(df.describe().T)
 
 # Eksik Değer Kontrolü
 print("\n--- Eksik Değer Sayısı ---")
-print(df.isnull().sum())```
+print(df.isnull().sum())
+
+```
 
 ### Veri Yapısı ve Kalitesi (Data Info)
 

@@ -189,16 +189,28 @@ Annual Income ve Spending Score değişkenleri, birbirinden bağımsız bilgi su
 
 #### Not: numeric_only=True parametresi, metin içeren sütunların hata vermesini engeller.
 
+<img width="800" height="640" alt="ç3" src="https://github.com/user-attachments/assets/cb237748-dd77-4e88-8a2c-69245b3a0ba0" />
 
 ## **4. Feature Engineering (Özellik Mühendisliği)**
 
 #### Ölçeklendirme, K-Means gibi mesafe tabanlı algoritmalar gözlemler arasındaki benzerliği mesafeye göre hesapladığı için kritik öneme sahiptir. Farklı ölçeklere sahip değişkenler (örneğin yıllık gelir ve harcama skoru) ölçeklendirilmediğinde, büyük değer aralığına sahip değişkenler mesafe hesaplamalarını domine eder ve model yanıltıcı kümeler oluşturur, bu nedenle tüm değişkenlerin eşit katkı sağlaması ve anlamlı müşteri segmentleri elde edilebilmesi için veriler ölçeklendirilmiştir.
+```
+# Kümeleme için kullanılacak özelliklerin seçilmesi
+# Analizi zenginleştirmek için Yaş, Gelir ve Skoru dahil ediyoruz
+X = df[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']]
 
+# Standartlaştırma (Verileri 0-1 aralığına/benzer ölçeğe çekme)
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+print("Veri ön işleme tamamlandı ve ölçeklendirildi.")
+```
 
 ## **5. Model Seçimi ve Dirsek (Elbow) Yöntemi**
 
 #### Kaç adet müşteri segmenti oluşturmalıyız? Dirsek yöntemi, hata oranının (WCSS) en keskin düştüğü noktayı bularak bize ideal küme sayısını verir.
 
+<img width="1015" height="535" alt="ç4" src="https://github.com/user-attachments/assets/57a74ff1-8b05-4075-a78a-7aa8be3bd788" />
 
 ### Optimal Küme Sayısının Belirlenmesi (Dirsek Yöntemi)
 
@@ -212,7 +224,27 @@ Bu nedenle, müşteri segmentasyonunda en dengeli ve anlamlı sonuçları elde e
 ## **6. Modelin Uygulanması ve 3D Görselleştirme**
 
 #### Yukarıdaki grafiğe göre ideal küme sayısı 5 'tir. Bu yüzden küme sayısını 5 olarak ayarlıyoruz.
+```
+# Final modelin kurulması
+kmeans = KMeans(n_clusters=5, init='k-means++', random_state=42, n_init=10)
+df['Segment'] = kmeans.fit_predict(X_scaled)
 
+# Segment sayılarını kontrol etme
+print(df['Segment'].value_counts())
+
+# 3D İnteraktif Görselleştirme (Plotly)
+fig = px.scatter_3d(df, 
+                    x='Age', 
+                    y='Annual Income (k$)', 
+                    z='Spending Score (1-100)',
+                    color='Segment',
+                    title='AVM Müşteri Segmentasyonu (3 Boyutlu)',
+                    opacity=0.8,
+                    color_continuous_scale='Viridis')
+
+fig.show()
+```
+<img width="1177" height="669" alt="ç5" src="https://github.com/user-attachments/assets/90763788-7416-4827-8d89-b9b5e77a9c70" />
 
 #### Yaş, Yıllık Gelir ve Harcama Skoru değişkenleri kullanılarak oluşturulan 5 farklı müşteri segmenti üç boyutlu olarak görselleştirilmiştir. Her renk, K-Means algoritması tarafından belirlenen farklı bir müşteri grubunu temsil etmektedir.
 
@@ -244,6 +276,8 @@ Bu segment, AVM için en değerli müşteri grubunu temsil etmektedir. Özel etk
 ## **7. İş Analizi ve Strateji Önerileri**
 
 #### Son olarak, bu grupların ortalamalarına bakarak yönetim için stratejiler belirliyoruz.
+
+<img width="631" height="185" alt="ç6" src="https://github.com/user-attachments/assets/a3e25575-96a7-4bcb-b3e7-0247c0dc6d26" />
 
 ### Segment Bazlı İş Analizi ve Pazarlama Stratejileri
 

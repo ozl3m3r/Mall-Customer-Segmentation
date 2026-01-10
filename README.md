@@ -52,7 +52,9 @@ gibi segmentler oluşturmak.
 * **Scikit-learn:** Müşteri segmentasyonu için K-Means kümeleme modeli ve veri ölçekleme işlemlerinin uygulanması amacıyla kullanılmıştır.
 
 
+## **2. Kütüphanelerin Yüklenmesi ve Veri Seti**
 
+## **3. Keşifsel Veri Analizi (EDA)**
 
 ### Veri Yapısı ve Kalitesi (Data Info)
 
